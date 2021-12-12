@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './credits.dart';
+import './settings.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -48,7 +49,7 @@ class HomePageState extends State<HomePage> {
     }
 
     return Scaffold(
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.black45,
         body: Center(
           child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
             Container(
@@ -78,7 +79,12 @@ class HomePageState extends State<HomePage> {
                         MaterialStateProperty.resolveWith(getBackgroundColor),
                     foregroundColor:
                         MaterialStateProperty.resolveWith(getForegroundColor)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Settings()),
+                  );
+                },
               ),
             ),
             Container(

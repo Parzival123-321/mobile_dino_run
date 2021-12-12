@@ -15,9 +15,9 @@ class CreditScreenState extends State<CreditScreen> {
         backgroundColor: Colors.black45,
         foregroundColor: Colors.white54,
       ),
-      backgroundColor: Colors.black87,
+      backgroundColor: Colors.black45,
       body: const Center(
-        child: Text('Mohaned Al-jabori', style: TextStyle(
+        child: Text('Made By: \n\nMohaned Al-jabori', style: TextStyle(
           fontSize: 18.0,
           color: Colors.white54
         ),
