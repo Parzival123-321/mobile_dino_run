@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './credits.dart';
-import './settings.dart';
+import './start.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -65,26 +65,6 @@ class HomePageState extends State<HomePage> {
                     foregroundColor:
                         MaterialStateProperty.resolveWith(getForegroundColor)),
                 onPressed: () {},
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.all(15),
-              child: TextButton(
-                child: const Text(
-                  'Settings',
-                  style: TextStyle(fontSize: 20.0),
-                ),
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.resolveWith(getBackgroundColor),
-                    foregroundColor:
-                        MaterialStateProperty.resolveWith(getForegroundColor)),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Settings()),
-                  );
-                },
               ),
             ),
             Container(
