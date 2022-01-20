@@ -1,26 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:pong/game/dino/dinorun.dart';
+import 'package:provider/provider.dart';
+import 'dart:ui';
+import 'main_menu.dart';
 
-class CreditScreen extends StatefulWidget {
-  @override
-  CreditScreenState createState() => CreditScreenState();
-}
+class CreditScreen extends StatelessWidget {
+  static const id = 'CreditScreen';
 
-class CreditScreenState extends State<CreditScreen> {
+  final Dinorun gameRef;
+
+  const CreditScreen(this.gameRef, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Credits'),
-        backgroundColor: Colors.black45,
-        foregroundColor: Colors.white54,
-      ),
-      backgroundColor: Colors.black45,
-      body: const Center(
-        child: Text('Made By: \n\nMohaned Al-jabori', style: TextStyle(
-          fontSize: 18.0,
-          color: Colors.white54
-        ),
+      // value: gameRef.creditScreen,
+      body: Center(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.8,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              color: Colors.black.withAlpha(100),
+              child: Padding(
+                padding:
+                const EdgeInsets.symmetric(vertical: 20, horizontal: 100),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Made By: \n\n Mohaned Al-jabori'),
+                    TextButton(
+                      onPressed: () {
+                        gameRef.overlays.remove(CreditScreen.id);
+                        gameRef.overlays.add(MainMenu.id);
+                      },
+                      child: const Icon(Icons.arrow_back_ios_rounded),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );
