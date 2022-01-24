@@ -1,8 +1,7 @@
 import 'dart:ui';
-
 import 'package:flame/geometry.dart';
 import 'package:flame/components.dart';
-
+import '../../player_data.dart';
 import 'dinorun.dart';
 import '../enemies/enemies.dart';
 
@@ -56,9 +55,11 @@ class Dino extends SpriteAnimationGroupComponent<DinoAnimationStates>
 
   static const double gravity = 800;
 
+  final PlayerData playerData;
+
   bool isHit = false;
 
-  Dino(Image image)
+  Dino(Image image, this.playerData)
       : super.fromFrameData(image, _animationMap);
 
   @override
@@ -117,6 +118,7 @@ class Dino extends SpriteAnimationGroupComponent<DinoAnimationStates>
     isHit = true;
     current = DinoAnimationStates.hit;
     _hitTimer.start();
+    playerData.lives -= 1;
   }
 
   void _reset() {

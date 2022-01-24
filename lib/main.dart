@@ -1,11 +1,16 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:flame/flame.dart';
-import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pong/player_data.dart';
 import 'credits.dart';
+import 'game_over.dart';
+import 'pause_menu.dart';
+import 'main_menu.dart';
 import 'game/dino/dinorun.dart';
 import 'game/display/hud_display.dart';
-import 'main_menu.dart';
 
 Dinorun _dinoRun = Dinorun();
 
@@ -16,7 +21,18 @@ Future<void> main() async {
   Flame.device.fullScreen();
   Flame.device.setLandscape();
 
+  await initHive();
   runApp(const DinoRunApp());
+}
+
+Future<void> initHive() async {
+  // For web hive does not need to be initialized.
+  if (!kIsWeb) {
+    final dir = await getApplicationDocumentsDirectory();
+    Hive.init(dir.path);
+  }
+
+  Hive.registerAdapter<PlayerData>(PlayerDataAdapter());
 }
 
 class DinoRunApp extends StatelessWidget {
@@ -48,8 +64,10 @@ class DinoRunApp extends StatelessWidget {
           ),
           overlayBuilderMap: {
             MainMenu.id: (_, Dinorun gameRef) => MainMenu(gameRef),
-            HudDisplay.id: (_, Dinorun gameRef) => HudDisplay(gameRef),
             CreditScreen.id: (_, Dinorun gameRef) => CreditScreen(gameRef),
+            HudDisplay.id: (_, Dinorun gameRef) => HudDisplay(gameRef),
+            PauseMenu.id: (_, Dinorun gameRef) => PauseMenu(gameRef),
+            GameOver.id: (_, Dinorun gameRef) => GameOver(gameRef),
           },
           initialActiveOverlays: const [MainMenu.id],
           game: _dinoRun,

@@ -72,4 +72,11 @@ class EnemyManager extends Component with HasGameRef<Dinorun> {
     _timer.update(dt);
     super.update(dt);
   }
+
+  void removeAllEnemies() {
+    final enemies = gameRef.children.whereType<Enemy>();
+    for (var element in enemies) {
+      element.remove;
+    }
+  }
 }

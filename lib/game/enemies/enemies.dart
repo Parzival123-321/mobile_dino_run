@@ -17,6 +17,9 @@ class Enemy extends SpriteAnimationComponent
   void onMount() {
     final shape = HitboxRectangle(relation: Vector2.all(0.4));
     addHitbox(shape);
+
+    size *= 0.9;
+
     super.onMount();
   }
 
@@ -26,6 +29,7 @@ class Enemy extends SpriteAnimationComponent
 
     if (position.x < -enemyData.vector.x) {
       removeFromParent();
+      gameRef.playerData.currentScore += 1;
     }
 
     super.update(dt);
