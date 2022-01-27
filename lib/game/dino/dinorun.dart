@@ -107,7 +107,6 @@ class Dinorun extends FlameGame with TapDetector, HasCollidables {
       await playerDataBox.put('DinoRun.PlayerData', PlayerData());
     }
 
-    // Now it is safe to return the stored value.
     return playerDataBox.get('DinoRun.PlayerData')!;
   }
 }

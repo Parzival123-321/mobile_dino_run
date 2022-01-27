@@ -6,13 +6,10 @@ import 'game/dino/dinorun.dart';
 import 'game/display/hud_display.dart';
 import 'main_menu.dart';
 
-// This represents the game over overlay,
-// displayed with dino runs out of lives.
 class GameOver extends StatelessWidget {
-  // An unique identified for this overlay.
+
   static const id = 'GameOverMenu';
 
-  // Reference to parent game.
   final Dinorun gameRef;
 
   const GameOver(this.gameRef, {Key? key}) : super(key: key);

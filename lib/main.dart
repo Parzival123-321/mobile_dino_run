@@ -26,7 +26,6 @@ Future<void> main() async {
 }
 
 Future<void> initHive() async {
-  // For web hive does not need to be initialized.
   if (!kIsWeb) {
     final dir = await getApplicationDocumentsDirectory();
     Hive.init(dir.path);

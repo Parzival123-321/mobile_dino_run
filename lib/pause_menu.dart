@@ -5,12 +5,10 @@ import 'main_menu.dart';
 import 'game/dino/dinorun.dart';
 import 'game/display/hud_display.dart';
 
-// This represents the pause menu overlay.
 class PauseMenu extends StatelessWidget {
-  // An unique identified for this overlay.
+
   static const id = 'PauseMenu';
 
-  // Reference to parent game.
   final Dinorun gameRef;
 
   const PauseMenu(this.gameRef, {Key? key}) : super(key: key);
